@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+import styled from 'styled-components';
+import Banner from '../Images/banner.jpg';
 
 const initialState ={
   fname:'',
@@ -15,11 +17,24 @@ const [form, setForm ] = useState(initialState);
 
 const handleChange = (e) =>{
   setForm({...form, [e.target.name]: e.target.value})
+};
+const handleSubmit = (e) =>{
+   e.preventDefault();
 }
-
+const Wrapper = styled.section`
+ background: linear-gradient( rgba(1,1,1,0.6),rgba(0,0,0,0.7)),url(${Banner}) center/cover no-repeat fixed;
+ min-height:100vh;
+`;
+const Form = styled.form `
+   display:flex;
+   flex-direction:column ;
+   align-items:center ;
+   justify-content:center ;
+   padding-top:100px ;
+`;
   return (
-    <section>
-        <form>
+    <Wrapper>
+        <Form>
           <label htmlFor="fname">FirstName:</label>
           <input 
           type="text"
@@ -49,8 +64,7 @@ const handleChange = (e) =>{
           required
           />
           <label htmlFor="message">Leave a Message</label>
-          <input 
-           type="textarea"
+          <textarea 
            name="message"
            onChange={handleChange}
            required
@@ -62,13 +76,14 @@ const handleChange = (e) =>{
         onChange={handleChange}
         required
         />
-        <input type="submit" name="submit"  value="submit"/>
-        </form>
-    </section>
+        <input type="submit" name="submit"  value="submit" onSubmit={handleSubmit}/>
+        </Form>
+    </Wrapper>
 
   )
   
 }
+
 
 
 export default FormApp;
