@@ -24,12 +24,15 @@ const Form = styled.form `
    padding-top:30px ;
   
 `;
+const Label = styled.label `
+   color:#afeeee;
+`;
 const Input = styled.input `
     padding:12px 40px;
     margin-bottom:12px ;
     margin-top:5px;
     margin-bottom:15px ;
-
+    
     &:focus{
       outline:none;
     }
@@ -73,41 +76,41 @@ const handleSubmit = (e) =>{
   return (
     <Wrapper>
         <Form>
-          <label htmlFor="fname">FirstName:</label>
+          <Label htmlFor="fname">FirstName:</Label>
           <Input 
           type="text"
           name="fname" 
           onChange={handleChange}
           required
           />
-          <label htmlFor="lname">LastName:</label>
+          <Label htmlFor="lname">LastName:</Label>
           <Input 
           type="text" 
           name="lname" 
           onChange={handleChange}
           required
           />
-          <label htmlFor="email">Your Email:</label>
+          <Label htmlFor="email">Your Email:</Label>
           <Input
            type="email" 
            name="email" 
            onChange={handleChange}
            required
            />
-          <label htmlFor="phonenumber">PhoneNumber:</label>
+          <Label htmlFor="phonenumber">PhoneNumber:</Label>
           <Input 
           type="text" 
           name="phoneNumber" 
           onChange={handleChange}
           required
           />
-          <label htmlFor="message">Leave a Message</label>
+          <Label htmlFor="message">Leave a Message</Label>
           <Textarea 
            name="message"
            onChange={handleChange}
            required
          />
-        <label htmlFor="password">Password</label>
+        <Label htmlFor="password">Password</Label>
         <Input
         type="password"
         name="password"
