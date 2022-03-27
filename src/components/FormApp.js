@@ -2,24 +2,13 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import Banner from '../Images/banner.jpg';
 
-const initialState = {
+const initialState ={
   fname:'',
   lname:'',
   email:'',
   phoneNumber:'',
   message:'',
   password:''
-
-}
-
-const FormApp = () => {
-const [form, setForm ] = useState(initialState);
-
-const handleChange = (e) =>{
-  setForm({...form, [e.target.name]: e.target.value})
-};
-const handleSubmit = (e) =>{
-   e.preventDefault();
 
 }
 const Wrapper = styled.section`
@@ -40,11 +29,17 @@ const Input = styled.input `
     margin-bottom:12px ;
     margin-top:5px;
     margin-bottom:15px ;
+
+    &:focus{
+      outline:none;
+    }
 `;
 const Textarea = styled.textarea `
     padding:20px 40px;
     margin-bottom:10px ;
-
+    &:focus{
+      outline:none;
+    }
 `;
 const Button = styled.button`
     background-color:#b0e0e6 ;
@@ -57,13 +52,24 @@ const Button = styled.button`
     letter-spacing:0.1em ;
     font-family:'Sansita', cursive ;
     cursor: pointer;
-    transition:all 500ms linear ;
+    transition:all 0.3s linear ;
     &:hover {
      color:#0abab5;
      font-weight:800;
      
     }
 `;
+const FormApp = () => {
+const [form, setForm ] = useState(initialState);
+
+const handleChange = (e) =>{
+  setForm({...form, [e.target.name]: e.target.value})
+};
+const handleSubmit = (e) =>{
+   e.preventDefault();
+
+}
+
   return (
     <Wrapper>
         <Form>
@@ -71,7 +77,7 @@ const Button = styled.button`
           <Input 
           type="text"
           name="fname" 
-          onChange={handleChange }
+          onChange={handleChange}
           required
           />
           <label htmlFor="lname">LastName:</label>
