@@ -26,13 +26,15 @@ const Form = styled.form `
 `;
 const Label = styled.label `
    color:#afeeee;
+   letter-spacing:0.08em;
 `;
 const Input = styled.input `
     padding:12px 40px;
     margin-bottom:12px ;
     margin-top:5px;
     margin-bottom:15px ;
-    
+    border-radius:50px  40px;
+    border-color:transparent;
     &:focus{
       outline:none;
     }
@@ -40,6 +42,8 @@ const Input = styled.input `
 const Textarea = styled.textarea `
     padding:20px 40px;
     margin-bottom:10px ;
+    border-radius:5px;
+    border-color:transparent;
     &:focus{
       outline:none;
     }
@@ -68,8 +72,26 @@ const [form, setForm ] = useState(initialState);
 const handleChange = (e) =>{
   setForm({...form, [e.target.name]: e.target.value})
 };
-const handleSubmit = (e) =>{
+const handleSubmit = async (e) =>{
    e.preventDefault();
+
+   await fetch("http://localhost:5001/send", {
+     method:"POST",
+     headers:{
+        "Content-type":"application/json"
+     },
+     body: JSON.stringify({...form})
+   })
+   .then((res) =>res.json())
+   .then(async (res)=> {
+     const resData = await res;
+     console.log(resData);
+     if(resData.status === "success"){
+       alert("Message sent successfully");
+     }else if(resData.status === 'fail'){
+       alert("Message failed to send")
+     }
+   })
 
 }
 
